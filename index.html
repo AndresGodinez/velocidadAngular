@@ -1,61 +1,113 @@
 <html>
-	<header>
-		<title>Mi proyecto</title>
-		<meta charset="utf-8">
-	</header>
-	<body>
-		<div class="row">
-			<div class="container">
-			<h2 class="page-header">Unici Team</h2>
-			<div class="jumbotron">
-		        <h1>Velocidad Angular</h1>
-		        <p>Definición.</p>
-		    </div>
-			</div>
-		</div>
-		<div>
-			
-		</div>
-		<div class="row">
-			<div class="container">			
-				<div class="col-md-6">
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="data"></label>
-							<input type="text" name="data" id="data" class="form-control">
-						</div>
-						<button class="btn btn-info" id="btnS">Guardar</button>
-					</div>
-				</div>
-			</div>
-		</div>		
-		<!-- Latest compiled and minified CSS -->
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<header>
+  <title>Mi proyecto</title>
+  <meta charset="utf-8">
+</header>
+<body>
+<div class="row">
+  <div class="container">
+    <h2 class="page-header">Unici Team</h2>
+    <div class="jumbotron" id="center">
+      <h1>Velocidad Angular</h1>
+      <p>La velocidad angular es una medida de la velocidad de rotación. Se define como el ángulo girado por una unidad
+        de tiempo y se designa mediante la letra griega ω. Su unidad en el Sistema Internacional es el radián por
+        segundo (rad/s).</p>
+    </div>
+  </div>
+</div>
+<div>
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</div>
+<div class="row">
+  <div class="container" id="app">
+    {{$data}}
+    <div class="col-md-6">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="velocidadAspa">Velocidad del Aspa</label>
+          <input type="text" name="data" id="velocidadAspa" Velocidad del Aspaclass="form-control" v-model="velocidad">
+        </div>
+        <div class="form-group">
+          <label for="medidaAspa">Medida del Aspa</label>
+          <input type="text" name="data" id="medidaAspa" class="form-control" v-model="mAspa">
+        </div>
+        <button class="btn btn-info" id="btnS" @click="conversion">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Latest compiled and minified CSS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    			<script>			
-			var velocidad = document.getElementById("data");
-			console.log(velocidad);
-			boton =  document.getElementById("btnS");
-			boton.addEventListener("click", imprimir);
-			function imprimir(){
-				console.log(velocidad.value);
-			}
-			function dregreesToRadian(deg) {
-  			  return deg * Math.PI / 180;
-  			}
-			v = "velocidad";
-			w = "Velocidad angular";
-			pi = Math.PI;
-			f = "frecuencia";
-			r = "Radio";
+<link type="text/css" href="style/style.css">
 
-		</script>
-	</body>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+  var velocidad = document.getElementById("data");
+  console.log(velocidad);
+  boton = document.getElementById("btnS");
+  boton.addEventListener("click", imprimir);
+
+  function imprimir() {
+    console.log(velocidad.value);
+  }
+
+  function dregreesToRadian(deg) {
+    return deg * Math.PI / 180;
+  }
+
+  v = "velocidad";
+  w = "Velocidad angular";
+  pi = Math.PI;
+  f = "frecuencia";
+  r = "Radio";
+
+</script>
+<script>
+  var app = new Vue({
+  el: '#app',
+  data: {
+    velocidad : null,
+    mAspa: null,
+  },
+  methods:{
+    conversion(){
+      let velocidad = this.velocidad;
+      let mAspa = this.mAspa;
+      let dVelocidad = velocidad.split(' ');
+      let unidadMedidaVelocidad = dVelocidad[1];
+      let datoVelocidad = parseFloat(dVelocidad[0]);
+      let velocidadAngular = null;
+      if(unidadMedidaVelocidad === "km/h" ){
+        console.log("unidadMedidaVelocidad");
+        console.log(unidadMedidaVelocidad);
+        velocidadAngular = (datoVelocidad * 1000)/3600;
+        //Expresado en m/s
+      }
+      console.log("velocidad angular ");
+      console.log(velocidadAngular);
+      let w = velocidadAngular * ( 1/2*Math.PI )*60;
+      w = parseFloat(w);
+      alert("la velocidad cualculada es "+ w);
+
+
+
+
+    },
+  }
+  })
+</script>
+</body>
 </html>
